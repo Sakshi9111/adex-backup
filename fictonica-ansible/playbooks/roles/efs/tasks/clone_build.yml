@@ -1,0 +1,27 @@
+
+- name: Make sure .pyenv directory exists
+  ansible.builtin.file:
+    path: '/home/ubuntu/efs-utils/'
+    state: directory
+    mode: "0755"
+ 
+
+- name: Clone AMZN EFS utils repository
+  git:
+    repo: 'https://github.com/aws/efs-utils'
+    dest: '/home/ubuntu/efs-utils/'
+    clone: yes
+    force: yes
+
+- name: Build amazon-efs-utils .deb package
+  shell: './build-deb.sh'
+  args:
+    chdir: '/home/ubuntu/efs-utils/'
+
+- name: Install amazon-efs-utils
+  shell: 'apt-get -y install ./build/amazon-efs-utils*deb'
+  args:
+    chdir: '/home/ubuntu/efs-utils'
+  become: true
+
+

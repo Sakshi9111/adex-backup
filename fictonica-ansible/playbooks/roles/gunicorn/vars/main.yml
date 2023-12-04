@@ -1,0 +1,15 @@
+---
+virtual_env_path: "/home/ubuntu/fictonica/pyenv/versions/3.10.12/envs/fictonicaWebApp/bin/"
+gunicorn_user_name: ubuntu
+gunicorn_group_name: www-data
+gunicorn_app_name: FictonicaWebApp_gunicorn
+app_name: FictonicaWebApp
+gunicorn_bind_address:  '127.0.0.1:1337'
+gunicorn_reload: false
+gunicorn_workers: 1
+gunicorn_project_dir: "/home/ubuntu/fictonica/"
+gunicorn_wsgi_application: FictonicaWebApp.wsgi:application
+gunicorn_log_level: info
+gunicorn_log_dir: "/var/log/gunicorn"
+gunicorn_destination_path: "/etc/supervisor/conf.d"
+gunicorn_django_settings:

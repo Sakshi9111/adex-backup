@@ -1,0 +1,5 @@
+virtual_env_path: "/home/ubuntu/fictonica/pyenv/versions/fictonicaWebApp/"
+application_path: "/home/ubuntu/fictonica/FictonicaWebApp/"
+project_path: "/home/ubuntu/fictonica/"
+template_files: "/usr/src/app/"
+mount_point: "/usr/src/app"

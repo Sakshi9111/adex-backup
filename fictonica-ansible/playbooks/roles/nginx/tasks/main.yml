@@ -1,0 +1,29 @@
+- name: install nginx
+  apt: 
+    name=nginx
+    update_cache=yes
+
+- name: Remove default configuration
+  file: >
+    path={{sites_enabled}}/default
+    state=absent
+
+- name: Delete nginx default file
+  file:
+    path: "{{ sites_available }}/default"
+    state: absent
+- name: copy nginx config file
+  template: 
+    src=nginx.conf
+    dest={{sites_available}}/{{site_name}}
+
+- name: enable configuration
+  file: >
+    dest={{sites_enabled}}/{{site_name}}
+    src={{sites_available}}/{{site_name}}
+    state=link
+  notify: restart nginx service
+
+
+
+

@@ -1,0 +1,8 @@
+---
+# vars file for setup
+virtual_env_path: "/home/ubuntu/fictonica/pyenv/versions/fictonicaWebApp"
+project_path: "/home/ubuntu/fictonica/"
+application_path: "/home/ubuntu/fictonica/FictonicaWebApp/"
+user_name: "ubuntu"
+execution_path: "/home/ubuntu/fictonica/pyenv/bin/python"
+manage_path: ""

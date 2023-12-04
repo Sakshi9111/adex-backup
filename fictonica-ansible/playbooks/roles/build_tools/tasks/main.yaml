@@ -1,0 +1,54 @@
+  - name: update repositories
+    apt:
+      update_cache: yes
+      upgrade: dist
+      state: latest
+
+  - name: Make sure the packages are installed (Debian/Ubuntu)
+    apt:
+      pkg: "{{item}}"
+      state: present
+      update_cache: yes
+    with_items:
+      - autoconf
+      - binutils-doc
+      - bison
+      - build-essential
+      - flex
+      - gettext
+      - libncurses5-dev
+    when: ansible_distribution in [ "Debian", "Ubuntu" ]
+
+  - name: Install required packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - libpq-dev
+      - curl
+      - git
+      - wget
+      - zip
+      - unzip
+      - tar
+      - htop
+      - make
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - llvm
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libffi-dev
+      - liblzma-dev
+      - openssl
+      - mysql-client
+      - libmysqlclient-dev
+      - net-tools
+      - sqlite3
+      - supervisor
+     
+      

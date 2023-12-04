@@ -1,0 +1,27 @@
+---
+- name: Install required packages
+  apt:
+    name: 
+      - pip
+      - screen
+      - nfs-common
+    state: latest
+
+- name: Creates directory
+  file:
+    path: "{{ template_files }}"
+    state: directory
+    mode: 0777
+
+    
+- name: Copy project files
+  synchronize:
+    src: "{{ playbook_dir }}/../.."
+    dest: "{{ project_path }}"
+    use_ssh_args: true
+
+- name: Install Django Project Dependencies
+  ansible.builtin.pip:
+      requirements: "{{ project_path }}requirements.txt"
+      virtualenv: "{{ virtual_env_path }}"
+      

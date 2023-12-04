@@ -1,0 +1,30 @@
+---
+- hosts: all
+  gather_facts: true
+  become: true
+  vars:
+    instance_owner: "ubuntu"
+    home: "/home/ubuntu/fictonica"
+  roles:
+    # - build_tools
+    # - role: avanov.pyenv
+    #   vars:
+    #     pyenv_path: "{{ home }}/pyenv"
+    #     pyenv_owner: "root"
+    #     pyenv_global: "3.10.12"
+    #     pyenv_update_git_install: no
+    #     pyenv_enable_autocompletion: yes
+    #     pyenv_python_versions:
+    #       - "3.10.12"
+    #     pyenv_virtualenvs:
+    #       - venv_name: "fictonicaWebApp"
+    #         py_version: "3.10.12"
+    # - django-app
+    # - configure
+    # - gunicorn
+    # - nginx
+    - efs
+    
+
+    
+    

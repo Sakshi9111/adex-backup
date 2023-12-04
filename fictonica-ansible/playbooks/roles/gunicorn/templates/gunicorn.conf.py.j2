@@ -1,0 +1,14 @@
+
+bind = '{{ gunicorn_bind_address }}'
+workers = 3
+loglevel = 'debug'
+accesslog = "/home/ubuntu/gunicorn_access.log"
+errorlog = "/home/ubuntu/gunicorn_error.log"
+capture_output = True
+reload = False
+
+user = 'ubuntu'
+group = 'www-data'
+daemon = True
+
+

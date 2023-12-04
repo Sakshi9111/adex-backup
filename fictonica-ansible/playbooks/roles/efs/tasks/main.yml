@@ -1,0 +1,25 @@
+---
+- name: update repositories
+  become: true
+  apt:
+    update_cache: yes
+    upgrade: dist
+    state: latest
+
+- name: Install required APT packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+    state: present
+    autoclean: yes
+    autoremove: yes
+  vars:
+    packages:
+      - make
+      - binutils
+
+- name: Setup on Linux
+  include_tasks: clone_build.yml
+
+  # - name: Setup on Linux
+  #   include_tasks: botocore.yml

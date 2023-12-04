@@ -1,0 +1,52 @@
+- name: Start supervisor service
+  service:
+    name: supervisor
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- name: Ensure service dir exists
+  ansible.builtin.file:
+    path: /etc/supervisor/conf.d
+    state: directory
+
+- name: Create a log directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ gunicorn_log_dir }}"
+    state: directory
+
+# - name: Creating Socket dir for gunicorn
+#   file:
+#     path: /var/run/{{ app_name }}.gunicorn.socket
+#     state: touch
+
+
+- name: Creating Service for gunicorn
+  template:
+    src: gunicorn.conf.py.j2
+    dest: /etc/supervisor/conf.d/{{ app_name }}.gunicorn.conf.py
+    owner: root
+    group: root 
+    mode: 0644
+
+- name: Creating Service for gunicorn
+  template:
+    src: supervisor_gunicorn.conf.j2
+    dest: /etc/supervisor/conf.d/{{ app_name }}.gunicorn.conf
+    owner: root
+    group: root 
+    mode: 0644
+
+# - name: Start supervisor service
+#   service:
+#     name: supervisor
+#     state: reloaded
+#     enabled: yes
+#     daemon_reload: yes
+
+# - name: Start supervisor service
+#   service:
+#     name: supervisor
+#     state: restarted
+#     enabled: yes
+#     daemon_reload: yes

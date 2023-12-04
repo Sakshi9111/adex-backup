@@ -1,0 +1,18 @@
+[program:{{ app_name }}]
+directory={{ gunicorn_project_dir }}
+command=/home/ubuntu/fictonica/pyenv/versions/fictonicaWebApp/bin/python /home/ubuntu/fictonica/pyenv/versions/fictonicaWebApp/bin/gunicorn {{ gunicorn_wsgi_application }} -c {{ gunicorn_destination_path }}/{{ app_name }}.gunicorn.conf.py
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/ubuntu/djangoapp.log
+
+[program:celery]
+directory=/home/ubuntu/FictonicaWebApp
+command=/home/ubuntu/fictonica/pyenv/versions/fictonicaWebApp/bin/celery --app=FictonicaWebApp.celery worker --loglevel=info --concurrency 2
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/home/ubuntu/celery.log
+
+
+
